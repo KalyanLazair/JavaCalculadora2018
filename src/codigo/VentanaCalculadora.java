@@ -18,6 +18,7 @@ public class VentanaCalculadora extends javax.swing.JFrame {
     String operacion;
     boolean pressed;
     boolean dibuja;
+    boolean igual;
 
     /**
      * Creates new form VentanaCalculadora
@@ -438,31 +439,31 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         //valueOf coge el string y calcula su valor en números.
         double operando2 = Double.valueOf(numero2);
         double operando1 = Double.valueOf(numero1);
-        if(operacion.equals("+")){
+        if(operacion.equals("+") && igual==false){
             operando1+=operando2;  //Sumamos operando 1 a operando 2 y guardamos el valor en                                    //el operando 1.
         }                          //el operando1.
         //Calcula la resta entre dos números.
-        if(operacion.equals("-")){
+        if(operacion.equals("-") && igual==false){
             operando1-=operando2;  
         }
         //Calcula la multiplicación entre dos números.
-        if(operacion.equals("*")){
+        if(operacion.equals("*") && igual==false){
             operando1*=operando2;
         }
         //Calcula la división entre dos números.
-        if(operacion.equals("/")){
+        if(operacion.equals("/") && igual==false){
             operando1/=operando2;
         }
         //Calcula la raíz cuadrada de un número.
-        if(operacion.equals("R")){
+        if(operacion.equals("R") && igual==false){
             operando1=Math.sqrt(operando1);
         }
         //Calcula el porcentaje de un número.
-        if(operacion.equals("%")){
+        if(operacion.equals("%") && igual==false){
             operando1=(operando1*operando2)/100;
         }
         //Calcula el cuadrado de un número.
-        if(operacion.equals("x2")){
+        if(operacion.equals("x2") && igual==false){
             operando1=operando1*operando1;
         }
         //Esta operación resetea el valor de la variable a 0 mediante una multiplicación.
@@ -470,8 +471,11 @@ public class VentanaCalculadora extends javax.swing.JFrame {
             operando1=operando1*0;
         }
         //Imprime en el label el valor del operando1.
-        jLabel1.setText(String.valueOf(operando1));
+        if(igual==false){
+           jLabel1.setText(String.valueOf(operando1));
+        }     
         dibuja=true;
+        igual=true;
     }//GEN-LAST:event_BotonIgualMousePressed
 //Este método nos define el botón decimal. Creamos on boolean que predeterminamos a false.
     //Comprobamos si el string ontiene ya un punto decimal y si lo contiene cambiamos el
@@ -493,6 +497,7 @@ public class VentanaCalculadora extends javax.swing.JFrame {
         jLabel1.setText("0");
         pressed=false;
         dibuja=false;
+        igual=false;
     }//GEN-LAST:event_BotonBorrarMousePressed
 
     private void BotonRaizMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonRaizMousePressed
